@@ -14,8 +14,12 @@ const verificarAdmin = (res) => {
     }
 };
 
-const Product = require("../containers/products");
+import {productDAO as Product} from "../DAOS/index";
 const product = new Product();
+
+router.get("/", async (req,res) => {
+  res.send(await product.getAll());
+})
 
 router.get("/:id", async (req, res) => {
   res.send(await product.getById(req.params.id));
@@ -31,8 +35,8 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   if (req.query.admin === "true") {
-    console.log(req.params.id);
-    console.log(req.body);
+    // console.log(req.params.id);
+    // console.log(req.body);
     await product.updateId(req.params.id, req.body);
     res.send("Producto actualizado con éxito");
   }

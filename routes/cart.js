@@ -3,13 +3,16 @@ const { Router } = express;
 
 const router = new Router();
 
-const Cart = require("../containers/cart");
+import{ productDAO as Product, cartDAO as Cart } from '../DAOS/index';
 const cart = new Cart();
-const Product = require("../containers/products");
 const product = new Product();
 
+router.get("/", async (req,res) => {
+    res.send(await cart.getAll())
+})
+
 router.post("/", async (req, res) => {
-    await cart.save(req.body);
+    await cart.save();
     res.send(`Carrito creado con éxito`);
 });
   
@@ -19,17 +22,27 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.get("/:id/productos", async (req, res) => {
-    res.send(await cart.getById(req.params.id));
+    const carrito = await cart.getById(req.params.id);
+    res.send(carrito.products)
 });
 
 router.post("/:id/productos", async (req, res) => {
-    await cart.addProduct(req.params.id, req.body);
+    const carrito = await cart.getById(req.params.id);
+    const producto = await product.getById(req.body.id);
+    carrito.products.push(producto);
+    await cart.updateId(req.params.id, carrito);
     res.send("Producto agregado al carrito");
 });
 
 router.delete("/:id/productos/:idProd", async (req, res) => {
-    await cart.deleteProduct(req.params.id, req.params.idProd);
-    res.send("Producto eliminado del carrito");
+    const carrito = await cart.getById(req.params.id);
+    const index = carrito.products.findIndex(p => p.id == req.params.idProd)
+    if (index != -1) {
+        carrito.products.splice(index, 1)
+        await cart.updateId(req.params.id, carrito)
+        res.send("Producto eliminado del carrito")
+    }
+    res.end();
 });
 
 module.exports = router;

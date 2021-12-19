@@ -69,8 +69,6 @@ class ContenedorFirebase {
     // async addProduct(id, arr) {
 
     // }
-
-    // async desconectar()
 }
 
 export default ContenedorFirebase
