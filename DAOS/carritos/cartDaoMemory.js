@@ -7,4 +7,4 @@ class CartDaoMemory extends ContenedorMem {
     }
 }
 
-export default CartDaoMemory
+module.exports = CartDaoMemory

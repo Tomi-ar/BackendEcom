@@ -13,4 +13,4 @@ class CartDaoMongo extends ContenedorMongo {
     }
 }
 
-export default CartDaoMongo
+module.exports = CartDaoMongo

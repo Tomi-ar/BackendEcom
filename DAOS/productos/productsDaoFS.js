@@ -10,4 +10,4 @@ class ProductsDaoFS extends ContenedorFS {
     }
 }
 
-export default ProductsDaoFS;
+module.exports = ProductsDaoFS;

@@ -5,5 +5,4 @@ class ProductsDaoMemory extends ContenedorMemoria {
         super();
     }
 }
-
-export default ProductsDaoMemory
+module.exports = ProductsDaoMemory

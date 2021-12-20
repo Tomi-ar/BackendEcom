@@ -14,4 +14,4 @@ class ProductsDaoMongo extends ContenedorMongo {
     }
 }
 
-export default ProductsDaoMongo
+module.exports = ProductsDaoMongo

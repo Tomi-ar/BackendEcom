@@ -33,4 +33,4 @@ switch (method){
         break;
 }
 
-export {productDAO, cartDAO};
+module.exports = {productDAO, cartDAO};

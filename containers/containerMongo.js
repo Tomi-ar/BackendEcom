@@ -55,4 +55,4 @@ class ContenedorMongo {
     // }
 }
 
-export default ContenedorMongo
+module.exports = ContenedorMongo

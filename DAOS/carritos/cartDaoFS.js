@@ -6,4 +6,4 @@ class CartDaoFS extends ContenedorFS {
     }
 }
 
-export default CartDaoFS;
+module.exports = CartDaoFS;

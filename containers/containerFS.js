@@ -114,4 +114,4 @@ class ContenedorFS {
     // }
 }
 
-export default ContenedorFS
+module.exports = ContenedorFS

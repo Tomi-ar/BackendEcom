@@ -3,9 +3,9 @@ const { Router } = express;
 
 const router = new Router();
 
-import{ productDAO as Product, cartDAO as Cart } from '../DAOS/index';
-const cart = new Cart();
-const product = new Product();
+// import { productDAO as Product, cartDAO as Cart } from '../DAOS/index';
+const cart = require("../DAOS/index").cartDAO;
+const product = require("../DAOS/index").productDAO;
 
 router.get("/", async (req,res) => {
     res.send(await cart.getAll())

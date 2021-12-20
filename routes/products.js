@@ -14,8 +14,9 @@ const verificarAdmin = (res) => {
     }
 };
 
-import {productDAO as Product} from "../DAOS/index";
-const product = new Product();
+// import { productDAO as Product } from "../DAOS/index";
+// const product = new Product();
+const product = require("../DAOS/index").productDAO
 
 router.get("/", async (req,res) => {
   res.send(await product.getAll());

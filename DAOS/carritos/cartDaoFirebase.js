@@ -10,4 +10,4 @@ class CartDaoFirebase extends ContenedorFirebase {
     }
 }
 
-export default CartDaoFirebase;
+module.exports = CartDaoFirebase;
