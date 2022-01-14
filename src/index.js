@@ -37,9 +37,7 @@ app.set("view engine", "ejs");
 // }
 // ENCRIPTAR CONTRASEÑA ********************************************************
 
-
-const { userSchema } = require("../modules/user");
-const User = mongoose.model("user", userSchema);
+const User = require("../modules/user");
 
 // RUTAS ********************************************************
 app.get("/signup", (req, res) => {
@@ -51,20 +49,19 @@ app.post("/signup", (req, res) => {
     let userName = req.body.username;
     let pass = req.body.password;
 
-    let match = User.find({"username": userName})
-
-    console.log( match);
-    if(match) {
-        return res.send({ message: "El usuario ya existe"})
-    }
+    User.find({username: userName}).then((res) => {console.log(res[0].username);})
+    // console.log(match);
+    // if(match) {
+    //     return res.send({ message: "El usuario ya existe"})
+    // }
     let newUser = {
         username: userName,
         password: pass
     }
-    User.insertMany({newUser})
-    console.log(newUser);
-    res.send({ message: "Usuario creado"})
-    // res.redirect("/profile")
+    new User(newUser).save()
+
+    // res.send({ message: "Usuario creado"})
+    res.redirect("/profile")
 })
 app.get("/login", (req, res) => {
     res.render("login")
