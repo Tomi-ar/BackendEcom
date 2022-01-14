@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const db = require('../src/db');
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -13,8 +12,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         allowNull: false
     }
-})
+}, {timestamps: true});
 
-const userDB = mongoose.connect(db.mongodb.collectionName, userSchema)
-
-module.exports = { userSchema, userDB }
+module.exports = { userSchema }
