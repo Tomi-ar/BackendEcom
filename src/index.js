@@ -12,66 +12,83 @@ app.set("view engine", "ejs");
 // MOTOR DE PLANTILLAS ********************************************************
 
 // ENCRIPTAR CONTRASEÑA ********************************************************
-// const bcrypt = require('bcrypt');
-// const saltRounds = 10;
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
-// async function encriptar(pass) {
-//     bcrypt.genSalt(saltRounds, function(err, salt) {
-//         bcrypt.hash(pass, salt, function(err, hash) {
+async function desencriptar(username, pass) {
+    let usuario = await User.findOne({"username": username});
+    const match = await bcrypt.compare(pass, usuario[0].password);
 
-//             console.log(hash);
-//         });
-//     })
-// }
-
-// async function desencriptar(username, pass) {
-//     let usuario = await db.User.findOne({"username": username});
-//     const match = await bcrypt.compare(pass, usuario.passwordHash);
-
-//     if(match) {
-//         return true;
-//     }
-//     return false;
-//     // or 
-//     console.log("no match")
-// }
+    if(match) {
+        return true;
+    }
+    return false;
+    // or 
+    // console.log("no match")
+}
 // ENCRIPTAR CONTRASEÑA ********************************************************
 
 const User = require("../modules/user");
+const { hash } = require('bcrypt');
 
 // RUTAS ********************************************************
 app.get("/signup", (req, res) => {
     res.render("signup")
 })
 app.post("/signup", (req, res) => {
+    console.log(req.body);
+    let userName = req.body.username;
+    let pass = bcrypt.hashSync(req.body.password, saltRounds);
 
+    User.find({username: userName})
+    .then((user) => {
+        if(user[0].username === userName){
+            return res.redirect("/existingUser");
+        }        
+    })
+    .catch((err) => {
+        let newUser = {
+            username: userName,
+            password: pass
+        }
+        new User(newUser).save()
+        return res.render("profile", { user: userName });
+    })
+})
+
+app.get("/login", (req, res) => {
+    res.render("login", { message: false})
+})
+app.post("/login", (req,res) => {
     console.log(req.body);
     let userName = req.body.username;
     let pass = req.body.password;
 
-    User.find({username: userName}).then((res) => {console.log(res[0].username);})
-    // console.log(match);
-    // if(match) {
-    //     return res.send({ message: "El usuario ya existe"})
-    // }
-    let newUser = {
-        username: userName,
-        password: pass
-    }
-    new User(newUser).save()
+    User.find({username: userName})
+    .then((user) => {
+        if (user[0].username === userName && desencriptar(userName, pass)) {
+            return res.render("profile", { user: userName });
+        } else {
+            return res.render("login", { message: "Usuario o contraseña incorrectos" });
+        }
+    })
+    .catch((err) => {
+        return res.render("login", { message: "Usuario no encontrado"})
+    })
+})
 
-    // res.send({ message: "Usuario creado"})
-    res.redirect("/profile")
-})
-app.get("/login", (req, res) => {
-    res.render("login")
-})
 
 app.get("/profile", (req, res) => {
-    res.render("profile")
+    res.render("profile", {user: false})
+})
+app.get("/existingUser", (req, res) => {
+    res.render("existingUser")
 })
 
-
+// app.get("/deleteAll", (req,res) => {
+//     User.deleteMany({})
+//     .then(() => {res.send("usuarios eliminados");})
+// })
 
 // RUTAS ********************************************************
 

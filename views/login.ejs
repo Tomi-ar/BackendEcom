@@ -12,13 +12,18 @@
 <body>
 
     <h1>LOGIN</h1>
-    <form>
+    <form method="post" action="">
         <input type="text" name="username" id="" placeholder="Tu usuario ...">
         <input type="password" name="password" id="" placeholder="Tu pass ...">
         <input type="submit" class="btn btn-success" value="Login">
 
     </form>
-    <a class="btn btn-success" href="/signup" role="button">Signup</a>
+    <% if (message) { %>
+        <p>
+            <%= message %>
+        </p>
+        <% } %>
+            <a class="btn btn-success" href="/signup" role="button">Signup</a>
 
 </body>
 
