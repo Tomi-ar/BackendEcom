@@ -1,10 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config();
 const db = require('./db');
 const app = express();
+const session = require('express-session');
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
+const bcrypt = require('bcrypt');
+const User = require("../modules/user");
+const router = require("../routes/fork")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api", router)
 
 // MOTOR DE PLANTILLAS ********************************************************
 app.set("views", "./views");
@@ -12,7 +21,6 @@ app.set("view engine", "ejs");
 // MOTOR DE PLANTILLAS ********************************************************
 
 // ENCRIPTAR CONTRASEÑA ********************************************************
-const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 async function desencriptar(username, pass) {
@@ -23,13 +31,69 @@ async function desencriptar(username, pass) {
         return true;
     }
     return false;
-    // or 
-    // console.log("no match")
 }
 // ENCRIPTAR CONTRASEÑA ********************************************************
 
-const User = require("../modules/user");
-const { hash } = require('bcrypt');
+
+// SESIONES *******************************************************************
+app.use(session({
+    secret: process.env.SECRET,
+    cookie: {
+      httpOnly: false,
+      secure: false,
+      maxAge: 10000
+    },
+    rolling: true,
+    resave: true,
+    saveUninitialized: false
+    })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+// SESIONES *******************************************************************
+
+
+// PASSPORT *******************************************************************
+function isValidPassword(user, pass) {
+    return bcrypt.compareSync(pass, user[0].password);
+}
+
+const authorize = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      next();
+      return;
+    }
+    res.redirect("/login");
+};
+
+
+passport.use("local-login",new localStrategy((username, password, done) => {
+    User.findOne({ username: username }, (err, user) => {
+            if(err) {
+                return done(err);
+            }
+            if(!user) {
+                console.log("Usuario no encontrado");
+                return done(null, false)
+            }
+            if(!isValidPassword(user, password)) {
+                console.log("Contraseña incorrecta");
+                return done(null, false)
+            }
+            return done(null, user);
+        })
+    }) 
+)
+
+passport.serializeUser((user, done) => {
+    done(null, user._id);
+});
+  
+passport.deserializeUser((id, done) => {
+    User.findById(id, done);
+});
+// PASSPORT *******************************************************************
+
 
 // RUTAS ********************************************************
 app.get("/signup", (req, res) => {
@@ -60,29 +124,50 @@ app.get("/login", (req, res) => {
     res.render("login", { message: false})
 })
 app.post("/login", (req,res) => {
-    console.log(req.body);
-    let userName = req.body.username;
-    let pass = req.body.password;
+    // console.log(req.body);
+    // let userName = req.body.username;
+    // let pass = req.body.password;
 
-    User.find({username: userName})
-    .then((user) => {
-        if (user[0].username === userName && desencriptar(userName, pass)) {
-            return res.render("profile", { user: userName });
-        } else {
-            return res.render("login", { message: "Usuario o contraseña incorrectos" });
+    // User.find({username: userName})
+    // .then((user) => {
+    //     if (user[0].username === userName && desencriptar(userName, pass)) {
+    //         return res.render("profile", { user: userName });
+    //     } else {
+    //         return res.render("login", { message: "Usuario o contraseña incorrectos" });
+    //     }
+    // })
+    // .catch((err) => {
+    //     return res.render("login", { message: "Usuario no encontrado"})
+    // })
+    passport.authenticate("local-login", { failureRedirect: "/login" }), 
+        function(req, res) {
+            res.render("profile", { user: username})
         }
-    })
-    .catch((err) => {
-        return res.render("login", { message: "Usuario no encontrado"})
-    })
+})
+
+app.get("logout", (req,res) => {
+    req.logout();
+    res.redirect("/login");
 })
 
 
-app.get("/profile", (req, res) => {
+app.get("/profile", authorize, (req, res) => {
     res.render("profile", {user: false})
 })
 app.get("/existingUser", (req, res) => {
     res.render("existingUser")
+})
+app.get("/info", (req,res) => {
+    let datos = {
+    "argumentos de entrada": process.argv.slice(2),
+    "sistema opertativo": process.platform,
+    "version de node.js": process.version,
+    "rss": process.memoryUsage().rss,
+    "path": process.execPath,
+    "processId": process.pid,
+    "carpeta proyecto": process.cwd(),
+    }
+    res.json({datos})
 })
 
 // app.get("/deleteAll", (req,res) => {
@@ -94,6 +179,6 @@ app.get("/existingUser", (req, res) => {
 
 
 
-app.listen(3030, () => {
-    console.log('Server is running on port 3030');
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}`);
 })
