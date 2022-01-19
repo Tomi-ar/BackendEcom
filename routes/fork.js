@@ -6,10 +6,10 @@ const router = new Router();
 router.get("/randoms", (req,res) => {
     let numeros = req.query.cant || 100000000
 
-    const dependencies = { message: numeros};
+    const dependencies = { message: numeros };
     const nums = [JSON.stringify(dependencies)]
 
-    const comp = fork("./random.js", nums);
+    const comp = fork("./routes/random.js", nums);
     comp.send("generateRandom");
 
     comp.on("message", (data) => {

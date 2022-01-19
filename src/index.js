@@ -9,7 +9,8 @@ const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const User = require("../modules/user");
-const router = require("../routes/fork")
+const router = require("../routes/fork");
+const user = require('../modules/user');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -55,7 +56,7 @@ app.use(passport.session());
 
 // PASSPORT *******************************************************************
 function isValidPassword(user, pass) {
-    return bcrypt.compareSync(pass, user[0].password);
+    return bcrypt.compareSync(pass, user.password);
 }
 
 const authorize = (req, res, next) => {
@@ -86,7 +87,7 @@ passport.use("local-login",new localStrategy((username, password, done) => {
 )
 
 passport.serializeUser((user, done) => {
-    done(null, user._id);
+    done(null, user.id);
 });
   
 passport.deserializeUser((id, done) => {
@@ -123,7 +124,11 @@ app.post("/signup", (req, res) => {
 app.get("/login", (req, res) => {
     res.render("login", { message: false})
 })
-app.post("/login", (req,res) => {
+app.post("/login", 
+    passport.authenticate("local-login", { failureRedirect: "/login" }), 
+        function(req, res) {
+            res.redirect("/profile")
+        }
     // console.log(req.body);
     // let userName = req.body.username;
     // let pass = req.body.password;
@@ -139,20 +144,14 @@ app.post("/login", (req,res) => {
     // .catch((err) => {
     //     return res.render("login", { message: "Usuario no encontrado"})
     // })
-    passport.authenticate("local-login", { failureRedirect: "/login" }), 
-        function(req, res) {
-            res.render("profile", { user: username})
-        }
-})
+)
 
 app.get("logout", (req,res) => {
     req.logout();
     res.redirect("/login");
 })
-
-
 app.get("/profile", authorize, (req, res) => {
-    res.render("profile", {user: false})
+    res.render("profile", {user: req.user.username})
 })
 app.get("/existingUser", (req, res) => {
     res.render("existingUser")
