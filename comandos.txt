@@ -1,0 +1,13 @@
+******* PASO POR PARAMETROS EL MODO, POR DEFECTO ES FORK *******
+node src/index.js --mode=cluster
+
+forever start src/index.js 
+forever list 
+forever stopall
+
+******* PM2 MODO FORK SIN MODO ESCUCHA *******
+pm2 start src/index.js 
+******* PM2 MODO CLUSTER CON MODO ESCUCHA *******
+pm2 start src/index.js -i --watch 
+******* PM2 MODO FORK CON MODO ESCUCHA *******
+pm2 start srx/index.js --watch
