@@ -1,0 +1,12 @@
+{"level":"error","message":"500 - numCPUs is not defined - /info - GET","timestamp":"2022-01-30T17:06:32.163Z"}
+{"level":"error","message":"500 - req.isAuthenticated is not a function - /productos - GET","timestamp":"2022-01-30T17:08:41.380Z"}
+{"level":"error","message":"500 - req.isAuthenticated is not a function - /productos - GET","timestamp":"2022-01-30T17:11:16.635Z"}
+{"level":"error","message":"500 - req.isAuthenticated is not a function - /productos - GET","timestamp":"2022-01-30T17:11:54.696Z"}
+{"level":"error","message":"500 - req.isAuthenticated is not a function - /productos - GET","timestamp":"2022-01-30T17:14:09.511Z"}
+{"level":"error","message":"500 - req.isAuthenticated is not a function - /productos - GET","timestamp":"2022-01-30T17:14:43.280Z"}
+{"level":"error","message":"500 - req.isAuthenticated is not a function - /productos - GET","timestamp":"2022-01-30T17:16:26.220Z"}
+{"level":"error","message":"500 - req.isAuthenticated is not a function - /profile - GET","timestamp":"2022-01-30T17:20:29.213Z"}
+{"level":"error","message":"500 - req.isAuthenticated is not a function - /profile - GET","timestamp":"2022-01-30T17:21:03.264Z"}
+{"level":"error","message":"500 - req.isAuthenticated is not a function - /profile - GET","timestamp":"2022-01-30T17:24:19.226Z"}
+{"level":"error","message":"500 - req.isAuthenticated is not a function - /profile - GET","timestamp":"2022-01-30T17:24:37.560Z"}
+{"level":"error","message":"500 - req.isAuthenticated is not a function - /profile - GET","timestamp":"2022-01-30T17:25:33.450Z"}

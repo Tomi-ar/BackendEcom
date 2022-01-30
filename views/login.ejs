@@ -10,20 +10,20 @@
 </head>
 
 <body>
+    <%- include('./templates/nav.ejs') %>
+        <h1>LOGIN</h1>
+        <form method="post" action="">
+            <input type="email" name="username" id="" placeholder="Tu email ...">
+            <input type="password" name="password" id="" placeholder="Tu pass ...">
+            <input type="submit" class="btn btn-success" value="Login">
 
-    <h1>LOGIN</h1>
-    <form method="post" action="">
-        <input type="email" name="username" id="" placeholder="Tu email ...">
-        <input type="password" name="password" id="" placeholder="Tu pass ...">
-        <input type="submit" class="btn btn-success" value="Login">
-
-    </form>
-    <% if (message) { %>
-        <p>
-            <%= message %>
-        </p>
-        <% } %>
-            <a class="btn btn-success" href="/signup" role="button">Signup</a>
+        </form>
+        <% if (message) { %>
+            <p>
+                <%= message %>
+            </p>
+            <% } %>
+                <a class="btn btn-success" href="/signup" role="button">Signup</a>
 
 </body>
 

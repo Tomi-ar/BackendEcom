@@ -3,11 +3,14 @@ const dotenv = require('dotenv');
 dotenv.config();
 require('./db');
 require("./passport");
+const logger = require('../loggers/logger');
 const app = express();
 const session = require('express-session');
 const passport = require('passport');
-const router = require("../routes/fork");
+const forkRouter = require("../routes/fork");
+const router = require('../routes/routes')
 const parseArgs = require('minimist');
+const compression = require('compression');
 
 // CLUSTER ********************************************************************
 const cluster = require("cluster");
@@ -37,7 +40,15 @@ if(args=="cluster" && cluster.isMaster) {
     // MIDDLEWARES ****************************************************************
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
-    app.use("/api", router)
+    app.use("/api", forkRouter)
+    app.use("/", router)
+    app.use(compression())
+
+    app.use(function(err, req, res, next) {
+        logger.log("error", `${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method}`);
+        res.status(err.status || 500);
+        res.render('error')
+    })
     // MIDDLEWARES ****************************************************************
 
     // SESIONES *******************************************************************
@@ -56,104 +67,6 @@ if(args=="cluster" && cluster.isMaster) {
     app.use(passport.initialize());
     app.use(passport.session());
     // SESIONES *******************************************************************
-
-
-    // RUTAS ********************************************************
-    app.get("/signup", (req, res) => {
-        res.render("signup")
-    })
-    app.post("/signup", 
-        passport.authenticate("local-signup", { 
-            failureRedirect: "/login",
-            successRedirect: "/profile"
-        })
-        // console.log(req.body);
-        // let userName = req.body.username;
-        // let pass = bcrypt.hashSync(req.body.password, saltRounds);
-
-        // User.find({username: userName})
-        // .then((user) => {
-        //     if(user[0].username === userName){
-        //         return res.redirect("/existingUser");
-        //     }        
-        // })
-        // .catch((err) => {
-        //     let newUser = {
-        //         username: userName,
-        //         password: pass
-        //     }
-        //     new User(newUser).save()
-        //     return res.render("profile", { user: userName });
-        // })
-    )
-
-    const authorize = (req, res, next) => {
-        if (req.isAuthenticated()) {
-        next();
-        return;
-        }
-        res.redirect("/login");
-    };
-
-    app.get("/login", (req, res) => {
-        res.render("login", { message: false})
-    })
-    app.post("/login", 
-        passport.authenticate("local-login", { failureRedirect: "/checkPass" }), 
-            function(req, res) {
-                res.redirect("/profile")
-            }
-        // console.log(req.body);
-        // let userName = req.body.username;
-        // let pass = req.body.password;
-
-        // User.find({username: userName})
-        // .then((user) => {
-        //     if (user[0].username === userName && desencriptar(userName, pass)) {
-        //         return res.render("profile", { user: userName });
-        //     } else {
-        //         return res.render("login", { message: "Usuario o contraseña incorrectos" });
-        //     }
-        // })
-        // .catch((err) => {
-        //     return res.render("login", { message: "Usuario no encontrado"})
-        // })
-    )
-
-    app.get("logout", (req,res) => {
-        req.logout();
-        res.redirect("/login");
-    })
-    app.get("/profile", authorize, (req, res) => {
-        res.render("profile", {user: req.user.username})
-    })
-    app.get("/existingUser", (req, res) => {
-        res.render("existingUser")
-    })
-    app.get("/checkPass", (req,res) => {
-        res.render("checkPass")
-    })
-    app.get("/info", (req,res) => {
-        let datos = {
-        "argumentos de entrada": process.argv.slice(2),
-        "sistema opertativo": process.platform,
-        "version de node.js": process.version,
-        "rss": process.memoryUsage().rss,
-        "path": process.execPath,
-        "processId": process.pid,
-        "carpeta proyecto": process.cwd(),
-        "numero de procesadores": numCPUs
-        }
-        res.json({datos})
-    })
-
-    // app.get("/deleteAll", (req,res) => {
-    //     User.deleteMany({})
-    //     .then(() => {res.send("usuarios eliminados");})
-    // })
-
-    // RUTAS ********************************************************
-
 
     app.listen(process.env.PORT, () => {
         console.log(`Server is running on port: ${process.env.PORT} - pid: ${process.pid}`);

@@ -10,13 +10,15 @@
 </head>
 
 <body>
-    <h1>HOLA BIENVENID@
-        <% if(user) { %>
-            <%= user %>
-                <% } %>
+    <%- include('./templates/nav.ejs') %>
 
-    </h1>
-    <a class="btn btn-primary" href="/login" role="button">Logout</a>
+        <h1>HOLA BIENVENID@
+            <% if(user) { %>
+                <%= user %>
+                    <% } %>
+
+        </h1>
+        <a class="btn btn-primary" href="/login" role="button">Logout</a>
 
 </body>
 

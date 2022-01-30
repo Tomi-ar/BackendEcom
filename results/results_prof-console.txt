@@ -1,0 +1,534 @@
+Statistical profiling result from Console-v8.log, (2764 ticks, 2 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+   2357   85.3%          /usr/local/bin/node
+     41    1.5%          /usr/lib/x86_64-linux-gnu/libc-2.31.so
+      5    0.2%          /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+      2    0.1%          [vdso]
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+      9    0.3%    2.5%  LazyCompile: *resolve path.js:1067:10
+      7    0.3%    1.9%  LazyCompile: *emit events.js:349:44
+      6    0.2%    1.7%  LazyCompile: *nextTick internal/process/task_queues.js:103:18
+      4    0.1%    1.1%  LazyCompile: *processTicksAndRejections internal/process/task_queues.js:67:35
+      3    0.1%    0.8%  RegExp: \u001b\[\d\d?m
+      3    0.1%    0.8%  RegExp: ; *([!#$%&'*+.^_`|~0-9A-Za-z-]+) *= *("(?:[\u000b\u0020\u0021\u0023-\u005b\u005d-\u007e\u0080-\u00ff]|\\[\u000b\u0020-\u00ff])*"|[!#$%&'*+.^_`|~0-9A-Za-z-]+) *
+      3    0.1%    0.8%  LazyCompile: *next /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:176:16
+      3    0.1%    0.8%  LazyCompile: *formatProperty internal/util/inspect.js:1651:24
+      2    0.1%    0.6%  RegExp: ^\/api\/?(?=\/|$)
+      2    0.1%    0.6%  RegExp: ^\/?$
+      2    0.1%    0.6%  RegExp: ^((?:@[^/\\%]+\/)?[^./\\%][^/\\%]*)(\/.*)?$
+      2    0.1%    0.6%  RegExp: [^\t\x20-\x7e\x80-\xff]
+      2    0.1%    0.6%  LazyCompile: *formatRaw internal/util/inspect.js:777:19
+      2    0.1%    0.6%  LazyCompile: *formatPrimitive internal/util/inspect.js:1363:25
+      2    0.1%    0.6%  LazyCompile: *Writable.write /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/readable-stream/lib/_stream_writable.js:288:37
+      1    0.0%    0.3%  RegExp: ^text\/|^application\/(javascript|json)
+      1    0.0%    0.3%  RegExp: ^logout\/?$
+      1    0.0%    0.3%  RegExp: ^\/login\/?$
+      1    0.0%    0.3%  RegExp: ^\/existingUser\/?$
+      1    0.0%    0.3%  RegExp: [\x00-\x1f\x27\x5c\x7f-\x9f]
+      1    0.0%    0.3%  RegExp: [\x00-\x1f\x22\x5c]
+      1    0.0%    0.3%  LazyCompile: *stringifyReplacerFn /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/logform/node_modules/safe-stable-stringify/stable.js:386:30
+      1    0.0%    0.3%  LazyCompile: *normalizeString path.js:59:25
+      1    0.0%    0.3%  LazyCompile: *next internal/per_context/primordials.js:266:9
+      1    0.0%    0.3%  LazyCompile: *logger internal/util/debuglog.js:90:18
+      1    0.0%    0.3%  LazyCompile: *Writable.write internal/streams/writable.js:258:36
+
+ [C++]:
+   ticks  total  nonlib   name
+    109    3.9%   30.4%  epoll_pwait
+     32    1.2%    8.9%  __write
+     24    0.9%    6.7%  __libc_write
+     17    0.6%    4.7%  __libc_read
+     14    0.5%    3.9%  __pthread_cond_signal
+     11    0.4%    3.1%  __GI___pthread_mutex_unlock
+     10    0.4%    2.8%  __lll_lock_wait
+     10    0.4%    2.8%  __libc_malloc
+      8    0.3%    2.2%  fwrite
+      7    0.3%    1.9%  do_futex_wait.constprop.0
+      6    0.2%    1.7%  __pthread_cond_timedwait
+      5    0.2%    1.4%  __mprotect
+      4    0.1%    1.1%  memcpy
+      3    0.1%    0.8%  std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)
+      3    0.1%    0.8%  accept4
+      3    0.1%    0.8%  _IO_file_xsputn
+      2    0.1%    0.6%  std::_Rb_tree_insert_and_rebalance(bool, std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)
+      2    0.1%    0.6%  operator new[](unsigned long, std::nothrow_t const&)
+      2    0.1%    0.6%  operator new(unsigned long)
+      2    0.1%    0.6%  operator delete(void*)
+      2    0.1%    0.6%  cfree
+      2    0.1%    0.6%  __munmap
+      1    0.0%    0.3%  syscall
+      1    0.0%    0.3%  std::ostream::sentry::sentry(std::ostream&)
+      1    0.0%    0.3%  std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const
+      1    0.0%    0.3%  sigaddset
+      1    0.0%    0.3%  posix_memalign
+      1    0.0%    0.3%  operator new[](unsigned long)
+      1    0.0%    0.3%  fmod
+      1    0.0%    0.3%  epoll_ctl
+      1    0.0%    0.3%  __vsnprintf
+      1    0.0%    0.3%  __fmod_finite
+      1    0.0%    0.3%  __errno_location
+      1    0.0%    0.3%  __clock_gettime
+      1    0.0%    0.3%  __GI___pthread_getspecific
+      1    0.0%    0.3%  _IO_file_sync
+      1    0.0%    0.3%  _IO_do_write
+      1    0.0%    0.3%  _IO_default_xsputn
+
+ [Summary]:
+   ticks  total  nonlib   name
+     63    2.3%   17.5%  JavaScript
+    294   10.6%   81.9%  C++
+    103    3.7%   28.7%  GC
+   2405   87.0%          Shared libraries
+      2    0.1%          Unaccounted
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+     24   26.1%    0.9%  __libc_write
+     18   19.6%    0.7%  __write
+     10   10.9%    0.4%  __libc_malloc
+      8    8.7%    0.3%  fwrite
+      4    4.3%    0.1%  memcpy
+      3    3.3%    0.1%  __GI___pthread_mutex_unlock
+      3    3.3%    0.1%  _IO_file_xsputn
+      2    2.2%    0.1%  std::_Rb_tree_insert_and_rebalance(bool, std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::_Rb_tree_node_base&)
+      2    2.2%    0.1%  operator new[](unsigned long, std::nothrow_t const&)
+      2    2.2%    0.1%  operator new(unsigned long)
+      2    2.2%    0.1%  operator delete(void*)
+      2    2.2%    0.1%  __mprotect
+      2    2.2%    0.1%  __lll_lock_wait
+      1    1.1%    0.0%  syscall
+      1    1.1%    0.0%  std::num_put<char, std::ostreambuf_iterator<char, std::char_traits<char> > >::do_put(std::ostreambuf_iterator<char, std::char_traits<char> >, std::ios_base&, char, long) const
+      1    1.1%    0.0%  std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)
+      1    1.1%    0.0%  operator new[](unsigned long)
+      1    1.1%    0.0%  fmod
+      1    1.1%    0.0%  __vsnprintf
+      1    1.1%    0.0%  __fmod_finite
+      1    1.1%    0.0%  _IO_file_sync
+      1    1.1%    0.0%  _IO_do_write
+      1    1.1%    0.0%  _IO_default_xsputn
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+   2357   85.3%  /usr/local/bin/node
+   1311   55.6%    /usr/local/bin/node
+    169   12.9%      LazyCompile: ~wrapSafe internal/modules/cjs/loader.js:986:18
+    169  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+    169  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1094:37
+    169  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:938:33
+     98    7.5%      LazyCompile: ~handleWriteReq internal/stream_base_commons.js:47:24
+     98  100.0%        LazyCompile: ~writeGeneric internal/stream_base_commons.js:143:22
+     98  100.0%          LazyCompile: ~Socket._writeGeneric net.js:772:42
+     98  100.0%            LazyCompile: ~Socket._write net.js:809:35
+     79    6.0%      LazyCompile: ~memoryUsage internal/process/per_thread.js:154:23
+     79  100.0%        LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/routes/routes.js:67:21
+     79  100.0%          LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:86:49
+     79  100.0%            LazyCompile: ~next /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/route.js:114:16
+     73    5.6%      LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+     62   84.9%        LazyCompile: ~nativeModuleRequire internal/bootstrap/loaders.js:306:29
+      4    6.5%          Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      4    6.5%          Eval: ~<anonymous> crypto.js:1:1
+      4  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      3    4.8%          LazyCompile: ~setupPrepareStackTrace internal/bootstrap/node.js:254:32
+      3  100.0%            Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      3    4.8%          Eval: ~<anonymous> tls.js:1:1
+      3  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      3    4.8%          Eval: ~<anonymous> stream.js:1:1
+      3  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      3    4.8%          Eval: ~<anonymous> internal/source_map/source_map_cache.js:1:1
+      3  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      3    4.8%          Eval: ~<anonymous> internal/modules/esm/loader.js:1:1
+      3  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      3    4.8%          Eval: ~<anonymous> http.js:1:1
+      3  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      3    4.8%          Eval: ~<anonymous> events.js:1:1
+      3  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      2    3.2%          LazyCompile: ~setupProcessObject internal/bootstrap/node.js:273:28
+      2  100.0%            Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      2    3.2%          LazyCompile: ~setupBuffer internal/bootstrap/node.js:302:21
+      2  100.0%            Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      2    3.2%          LazyCompile: ~initializeCJSLoader internal/bootstrap/pre_execution.js:427:29
+      2  100.0%            LazyCompile: ~prepareMainThreadExecution internal/bootstrap/pre_execution.js:21:36
+      2    3.2%          Eval: ~<anonymous> internal/process/esm_loader.js:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      2    3.2%          Eval: ~<anonymous> internal/cluster/master.js:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      2    3.2%          Eval: ~<anonymous> internal/blob.js:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      2    3.2%          Eval: ~<anonymous> fs.js:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      2    3.2%          Eval: ~<anonymous> _http_client.js:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          LazyCompile: ~initializeSourceMapsHandlers internal/bootstrap/pre_execution.js:452:38
+      1  100.0%            LazyCompile: ~prepareMainThreadExecution internal/bootstrap/pre_execution.js:21:36
+      1    1.6%          LazyCompile: ~get dns.js:333:8
+      1  100.0%            /usr/local/bin/node
+      1    1.6%          Eval: ~<anonymous> tty.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> net.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> internal/url.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> internal/timers.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> internal/process/task_queues.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> internal/modules/package_json_reader.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> internal/modules/esm/get_source.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> internal/main/run_main_module.js:1:1
+      1    1.6%          Eval: ~<anonymous> internal/fs/promises.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> internal/crypto/keygen.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> internal/console/global.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> internal/child_process.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> child_process.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> buffer.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1    1.6%          Eval: ~<anonymous> assert.js:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+     11   15.1%        LazyCompile: ~compileForPublicLoader internal/bootstrap/loaders.js:220:25
+     11  100.0%          LazyCompile: ~loadNativeModule internal/modules/cjs/helpers.js:35:26
+     11  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:725:24
+     67    5.1%      LazyCompile: ~writevGeneric internal/stream_base_commons.js:118:23
+     67  100.0%        LazyCompile: ~Socket._writeGeneric net.js:772:42
+     67  100.0%          LazyCompile: ~Socket._writev net.js:804:36
+     67  100.0%            LazyCompile: ~doWrite internal/streams/writable.js:367:17
+     66    5.0%      /usr/local/bin/node
+      9   13.6%        LazyCompile: ~removeColors internal/util.js:70:22
+      9  100.0%          LazyCompile: ~isBelowBreakLength internal/util/inspect.js:1714:28
+      9  100.0%            LazyCompile: ~reduceToSingleString internal/util/inspect.js:1738:30
+      8   12.1%        LazyCompile: ~readPackage internal/modules/cjs/loader.js:258:21
+      8  100.0%          LazyCompile: ~readPackageScope internal/modules/cjs/loader.js:289:26
+      5   62.5%            LazyCompile: ~trySelf internal/modules/cjs/loader.js:409:17
+      3   37.5%            LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1094:37
+      8   12.1%        LazyCompile: ~header /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/response.js:759:29
+      8  100.0%          LazyCompile: ~json /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/response.js:239:25
+      8  100.0%            LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/routes/routes.js:67:21
+      3    4.5%        LazyCompile: ~format /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/content-type/index.js:65:17
+      3  100.0%          LazyCompile: ~setCharset /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/utils.js:246:41
+      3  100.0%            LazyCompile: ~send /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/response.js:107:25
+      3    4.5%        LazyCompile: ~checkInvalidHeaderChar _http_common.js:231:32
+      3  100.0%          LazyCompile: ~<anonymous> _http_outgoing.js:549:45
+      3  100.0%            LazyCompile: ~setHeader _http_outgoing.js:559:57
+      3    4.5%        LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:462:28
+      3  100.0%          LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:816:35
+      3  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:725:24
+      2    3.0%        LazyCompile: ~stat internal/modules/cjs/loader.js:146:14
+      2  100.0%          LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:462:28
+      2  100.0%            LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:816:35
+      2    3.0%        LazyCompile: ~readPackageScope internal/modules/cjs/loader.js:289:26
+      2  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1094:37
+      2  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:938:33
+      2    3.0%        LazyCompile: ~parse /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/content-type/index.js:106:16
+      2  100.0%          LazyCompile: ~setCharset /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/utils.js:246:41
+      2  100.0%            LazyCompile: ~send /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/response.js:107:25
+      2    3.0%        LazyCompile: ~expressInit /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/middleware/init.js:29:30
+      2  100.0%          LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:86:49
+      2  100.0%            LazyCompile: ~trim_prefix /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:288:23
+      1    1.5%        LazyCompile: ~wrapSafe internal/modules/cjs/loader.js:986:18
+      1  100.0%          LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1  100.0%            LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1094:37
+      1    1.5%        LazyCompile: ~use /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/application.js:187:23
+      1  100.0%          Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/src/index.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1    1.5%        LazyCompile: ~splitRoot fs.js:1685:33
+      1  100.0%          LazyCompile: ~realpathSync fs.js:1722:22
+      1  100.0%            LazyCompile: ~toRealPath internal/modules/cjs/loader.js:361:20
+      1    1.5%        LazyCompile: ~shouldUseNative /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/object-assign/index.js:21:25
+      1  100.0%          Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/object-assign/index.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1    1.5%        LazyCompile: ~router /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:46:18
+      1  100.0%          LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:86:49
+      1  100.0%            LazyCompile: ~trim_prefix /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:288:23
+      1    1.5%        LazyCompile: ~resolveExports internal/modules/cjs/loader.js:440:24
+      1  100.0%          LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:462:28
+      1  100.0%            LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:816:35
+      1    1.5%        LazyCompile: ~populateMaps /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mime-types/index.js:154:23
+      1  100.0%          Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mime-types/index.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1    1.5%        LazyCompile: ~pathtoRegexp /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/path-to-regexp/index.js:28:22
+      1  100.0%          LazyCompile: ~Layer /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:33:15
+      1  100.0%            LazyCompile: ~route /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:497:29
+      1    1.5%        LazyCompile: ~parse /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/dotenv/lib/main.js:15:16
+      1  100.0%          LazyCompile: ~config /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/dotenv/lib/main.js:59:17
+      1  100.0%            Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/src/index.js:1:1
+      1    1.5%        LazyCompile: ~onParserExecuteCommon _http_server.js:666:31
+      1  100.0%          LazyCompile: ~onParserExecute _http_server.js:609:25
+      1    1.5%        LazyCompile: ~next internal/per_context/primordials.js:266:9
+      1  100.0%          LazyCompile: ~logger internal/util/debuglog.js:90:18
+      1  100.0%            LazyCompile: ~onParserExecute _http_server.js:609:25
+      1    1.5%        LazyCompile: ~module.exports /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/set-blocking/index.js:1:27
+      1  100.0%          Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/npmlog/log.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1    1.5%        LazyCompile: ~match /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:110:39
+      1  100.0%          LazyCompile: ~matchLayer /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:578:20
+      1  100.0%            LazyCompile: ~next /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:176:16
+      1    1.5%        LazyCompile: ~isIPv4 internal/net.js:31:16
+      1  100.0%          LazyCompile: ~isIP internal/net.js:39:14
+      1  100.0%            LazyCompile: ~lookupAndConnect net.js:995:26
+      1    1.5%        LazyCompile: ~getUriReadPreference /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/helpers/processConnectionOptions.js:42:30
+      1  100.0%          LazyCompile: ~processConnectionOptions /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/helpers/processConnectionOptions.js:6:34
+      1  100.0%            LazyCompile: ~Connection.openUri /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/connection.js:670:40
+      1    1.5%        LazyCompile: ~deriveBFS /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/color-convert/route.js:32:19
+      1  100.0%          LazyCompile: ~module.exports /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/color-convert/route.js:78:27
+      1  100.0%            LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/color-convert/index.js:61:25
+      1    1.5%        LazyCompile: ~callSiteToString /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/depd/lib/compat/index.js:21:76
+      1  100.0%          LazyCompile: ~get /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/depd/lib/compat/index.js:54:16
+      1  100.0%            Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/depd/index.js:1:1
+      1    1.5%        LazyCompile: ~Module.load internal/modules/cjs/loader.js:938:33
+      1  100.0%          LazyCompile: ~Module._load internal/modules/cjs/loader.js:725:24
+      1  100.0%            LazyCompile: ~Module.require internal/modules/cjs/loader.js:966:36
+      1    1.5%        LazyCompile: ~Mime.lookup /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mime/mime.js:69:33
+      1  100.0%          Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mime/mime.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1    1.5%        LazyCompile: ~Kareem.filter /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/kareem/index.js:329:35
+      1  100.0%          LazyCompile: ~applyQueryMiddleware /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/helpers/query/applyQueryMiddleware.js:26:30
+      1  100.0%            LazyCompile: ~compile /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/model.js:4767:33
+      1    1.5%        LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/helpers/pluralize.js:86:34
+      1  100.0%          /usr/local/bin/node
+      1  100.0%            LazyCompile: ~pluralize /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/helpers/pluralize.js:82:19
+      1    1.5%        Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/debug/src/node.js:1:1
+      1  100.0%          LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1  100.0%            LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1094:37
+      1    1.5%        Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/colors/lib/colors.js:96:23
+      1  100.0%          Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/colors/lib/colors.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1    1.5%        /usr/local/bin/node
+      1  100.0%          Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/cast/boolean.js:1:1
+      1  100.0%            LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+     41    3.1%      LazyCompile: *nextTick internal/process/task_queues.js:103:18
+     12   29.3%        LazyCompile: ~onwrite internal/streams/writable.js:394:17
+      9   75.0%          LazyCompile: ~afterWriteDispatched internal/stream_base_commons.js:151:30
+      5   55.6%            LazyCompile: ~writevGeneric internal/stream_base_commons.js:118:23
+      4   44.4%            LazyCompile: ~writeGeneric internal/stream_base_commons.js:143:22
+      3   25.0%          LazyCompile: *writeOrBuffer internal/streams/writable.js:334:23
+      2   66.7%            LazyCompile: ~Writable.write internal/streams/writable.js:258:36
+      1   33.3%            LazyCompile: *Writable.write internal/streams/writable.js:258:36
+      9   22.0%        LazyCompile: ~emitReadable internal/streams/readable.js:540:22
+      9  100.0%          LazyCompile: ~onEofChunk internal/streams/readable.js:510:20
+      9  100.0%            LazyCompile: ~readableAddChunk internal/streams/readable.js:214:26
+      8   19.5%        LazyCompile: ~endReadable internal/streams/readable.js:1317:21
+      8  100.0%          LazyCompile: ~Readable.read internal/streams/readable.js:374:35
+      4   50.0%            LazyCompile: ~resume_ internal/streams/readable.js:960:17
+      4   50.0%            LazyCompile: ~flow internal/streams/readable.js:984:14
+      6   14.6%        LazyCompile: ~onwrite /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/readable-stream/lib/_stream_writable.js:444:17
+      5   83.3%          LazyCompile: ~WritableState.onwrite /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/readable-stream/lib/_stream_writable.js:159:27
+      4   80.0%            LazyCompile: ~_write /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/winston-transport/index.js:69:51
+      1   20.0%            LazyCompile: ~afterTransform /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/readable-stream/lib/_stream_transform.js:76:24
+      1   16.7%          LazyCompile: *Writable.write /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/readable-stream/lib/_stream_writable.js:288:37
+      1  100.0%            LazyCompile: ~ondata /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/readable-stream/lib/_stream_readable.js:679:18
+      3    7.3%        LazyCompile: ~resOnFinish _http_server.js:764:21
+      2   66.7%          LazyCompile: *emit events.js:349:44
+      2  100.0%            LazyCompile: ~onFinish _http_outgoing.js:790:18
+      1   33.3%          LazyCompile: ~emit events.js:349:44
+      1  100.0%            LazyCompile: ~onFinish _http_outgoing.js:790:18
+      2    4.9%        LazyCompile: ~resume internal/streams/readable.js:953:16
+      2  100.0%          LazyCompile: ~Readable.resume internal/streams/readable.js:939:37
+      2  100.0%            LazyCompile: ~_dump _http_incoming.js:297:49
+      1    2.4%        LazyCompile: ~maybeReadMore /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/readable-stream/lib/_stream_readable.js:558:23
+      1  100.0%          LazyCompile: ~addChunk /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/readable-stream/lib/_stream_readable.js:295:18
+      1  100.0%            LazyCompile: ~readableAddChunk /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/readable-stream/lib/_stream_readable.js:249:26
+     24    1.8%      LazyCompile: ~getColorDepth internal/tty.js:106:23
+     24  100.0%        LazyCompile: ~value internal/console/constructor.js:303:20
+     24  100.0%          LazyCompile: ~value internal/console/constructor.js:324:20
+     24  100.0%            LazyCompile: ~log internal/console/constructor.js:362:6
+     24    1.8%      LazyCompile: ~Hash internal/crypto/hash.js:37:14
+     24  100.0%        LazyCompile: ~createHash crypto.js:115:20
+     24  100.0%          LazyCompile: ~entitytag /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/etag/index.js:39:20
+     24  100.0%            LazyCompile: ~etag /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/etag/index.js:70:15
+     23    1.8%      LazyCompile: ~writeHead _http_server.js:254:19
+     23  100.0%        LazyCompile: ~_implicitHeader _http_server.js:249:68
+     23  100.0%          LazyCompile: ~write_ _http_outgoing.js:704:16
+     23  100.0%            LazyCompile: ~end _http_outgoing.js:795:45
+     18    1.4%      LazyCompile: *next /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:176:16
+     15   83.3%        LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:136:31
+     14   93.3%          LazyCompile: ~router /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:46:18
+     14  100.0%            LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:86:49
+      1    6.7%          LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/application.js:158:29
+      1  100.0%            LazyCompile: ~app /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/express.js:38:21
+      2   11.1%        LazyCompile: *handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:136:31
+      2  100.0%          LazyCompile: ~router /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:46:18
+      2  100.0%            LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:86:49
+      1    5.6%        LazyCompile: ~jsonParser /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/body-parser/lib/types/json.js:98:30
+      1  100.0%          LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:86:49
+      1  100.0%            LazyCompile: ~trim_prefix /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:288:23
+     17    1.3%      LazyCompile: ~readPackage internal/modules/cjs/loader.js:258:21
+     15   88.2%        LazyCompile: ~resolveExports internal/modules/cjs/loader.js:440:24
+     15  100.0%          LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:462:28
+     15  100.0%            LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:816:35
+      2   11.8%        LazyCompile: ~readPackageScope internal/modules/cjs/loader.js:289:26
+      2  100.0%          LazyCompile: ~trySelf internal/modules/cjs/loader.js:409:17
+      2  100.0%            LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:816:35
+     17    1.3%      LazyCompile: ~expressInit /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/middleware/init.js:29:30
+     17  100.0%        LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:86:49
+     17  100.0%          LazyCompile: ~trim_prefix /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:288:23
+     17  100.0%            LazyCompile: *next /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:176:16
+     16    1.2%      LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/routes/routes.js:67:21
+     16  100.0%        LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:86:49
+     16  100.0%          LazyCompile: ~next /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/route.js:114:16
+     16  100.0%            LazyCompile: ~dispatch /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/route.js:98:45
+     15    1.1%      LazyCompile: ~stat internal/modules/cjs/loader.js:146:14
+     10   66.7%        LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:462:28
+     10  100.0%          LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:816:35
+     10  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:725:24
+      5   33.3%        LazyCompile: ~tryFile internal/modules/cjs/loader.js:352:17
+      5  100.0%          LazyCompile: ~tryExtensions internal/modules/cjs/loader.js:368:23
+      5  100.0%            LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:462:28
+     14    1.1%      LazyCompile: ~stringify /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/response.js:1123:20
+     14  100.0%        LazyCompile: ~json /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/response.js:239:25
+     14  100.0%          LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/routes/routes.js:67:21
+     14  100.0%            LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:86:49
+
+    109    3.9%  epoll_pwait
+
+     41    1.5%  /usr/lib/x86_64-linux-gnu/libc-2.31.so
+     27   65.9%    /usr/local/bin/node
+      6   22.2%      LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/logform/timestamp.js:14:25
+      6  100.0%        LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/logform/combine.js:17:10
+      6  100.0%          LazyCompile: ~_transform /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/winston/lib/winston/logger.js:275:13
+      6  100.0%            LazyCompile: ~Transform._read /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/readable-stream/lib/_stream_transform.js:171:38
+      6   22.2%      /usr/local/bin/node
+      2   33.3%        LazyCompile: ~stat internal/modules/cjs/loader.js:146:14
+      2  100.0%          LazyCompile: ~Module._findPath internal/modules/cjs/loader.js:462:28
+      2  100.0%            LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:816:35
+      2   33.3%        LazyCompile: ~entitytag /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/etag/index.js:39:20
+      2  100.0%          LazyCompile: ~etag /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/etag/index.js:70:15
+      2  100.0%            LazyCompile: ~generateETag /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/utils.js:271:32
+      1   16.7%        LazyCompile: ~compileForPublicLoader internal/bootstrap/loaders.js:220:25
+      1  100.0%          LazyCompile: ~loadNativeModule internal/modules/cjs/helpers.js:35:26
+      1  100.0%            LazyCompile: ~Module._load internal/modules/cjs/loader.js:725:24
+      1   16.7%        LazyCompile: ~Module.load internal/modules/cjs/loader.js:938:33
+      1  100.0%          LazyCompile: ~Module._load internal/modules/cjs/loader.js:725:24
+      1  100.0%            LazyCompile: ~Module.require internal/modules/cjs/loader.js:966:36
+      2    7.4%      LazyCompile: *formatProperty internal/util/inspect.js:1651:24
+      2  100.0%        LazyCompile: *formatRaw internal/util/inspect.js:777:19
+      2  100.0%          LazyCompile: ~formatValue internal/util/inspect.js:708:21
+      2  100.0%            LazyCompile: ~inspect internal/util/inspect.js:265:17
+      1    3.7%      LazyCompile: ~writeCommand /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/message_stream.js:35:17
+      1  100.0%        LazyCompile: ~write /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connection.js:488:15
+      1  100.0%          LazyCompile: ~command /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connection.js:161:12
+      1  100.0%            LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connect.js:63:43
+      1    3.7%      LazyCompile: ~setHeader _http_outgoing.js:559:57
+      1  100.0%        LazyCompile: ~expressInit /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/middleware/init.js:29:30
+      1  100.0%          LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:86:49
+      1  100.0%            LazyCompile: ~trim_prefix /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:288:23
+      1    3.7%      LazyCompile: ~nextTick internal/process/task_queues.js:103:18
+      1  100.0%        LazyCompile: ~resume internal/streams/readable.js:953:16
+      1  100.0%          LazyCompile: ~Readable.resume internal/streams/readable.js:939:37
+      1  100.0%            LazyCompile: ~_dump _http_incoming.js:297:49
+      1    3.7%      LazyCompile: ~next /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:176:16
+      1  100.0%        LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:136:31
+      1  100.0%          LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/application.js:158:29
+      1  100.0%            LazyCompile: ~app /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/express.js:38:21
+      1    3.7%      LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/index.js:136:31
+      1  100.0%        LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/application.js:158:29
+      1  100.0%          LazyCompile: ~app /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/express.js:38:21
+      1  100.0%            LazyCompile: ~emit events.js:349:44
+      1    3.7%      LazyCompile: ~getHeader _http_outgoing.js:575:57
+      1  100.0%        LazyCompile: ~res.get /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/response.js:793:19
+      1  100.0%          LazyCompile: ~json /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/response.js:239:25
+      1  100.0%            LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/routes/routes.js:67:21
+      1    3.7%      LazyCompile: ~endReadable internal/streams/readable.js:1317:21
+      1  100.0%        LazyCompile: ~Readable.read internal/streams/readable.js:374:35
+      1  100.0%          LazyCompile: ~flow internal/streams/readable.js:984:14
+      1  100.0%            LazyCompile: ~emitReadable_ internal/streams/readable.js:551:23
+      1    3.7%      LazyCompile: ~command /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connection.js:161:12
+      1  100.0%        LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connect.js:63:43
+      1  100.0%          LazyCompile: ~prepareHandshakeDocument /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connect.js:128:34
+      1  100.0%            LazyCompile: ~performInitialHandshake /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connect.js:47:33
+      1    3.7%      LazyCompile: ~Readable.read /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/readable-stream/lib/_stream_readable.js:392:36
+      1  100.0%        LazyCompile: ~maybeReadMore_ /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/readable-stream/lib/_stream_readable.js:565:24
+      1  100.0%          LazyCompile: *processTicksAndRejections internal/process/task_queues.js:67:35
+      1    3.7%      LazyCompile: ~Connection /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connection.js:37:16
+      1  100.0%        LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connect.js:16:29
+      1  100.0%          LazyCompile: ~callback /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connect.js:239:31
+      1  100.0%            LazyCompile: ~connectHandler /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connect.js:270:28
+      1    3.7%      LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/model.js:1769:21
+      1  100.0%        LazyCompile: ~processTicksAndRejections internal/process/task_queues.js:67:35
+      1    3.7%      LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/utils.js:494:13
+      1  100.0%        LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/operations/execute_operation.js:49:47
+      1  100.0%          LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/utils.js:494:13
+      1  100.0%            LazyCompile: ~completeEndSession /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/sessions.js:138:40
+      1    3.7%      Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/winston/node_modules/async/internal/iterator.js:1:1
+      1  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1094:37
+      1  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:938:33
+
+     32    1.2%  __write
+     18   56.3%    /usr/local/bin/node
+      2   11.1%      /usr/local/bin/node
+      1   50.0%        LazyCompile: ~Bitfield /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/sparse-bitfield/index.js:5:19
+      1  100.0%          LazyCompile: ~Bitfield /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/sparse-bitfield/index.js:5:19
+      1  100.0%            LazyCompile: ~read /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/saslprep/lib/memory-code-points.js:15:14
+      1   50.0%        LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connect.js:73:85
+      1  100.0%          LazyCompile: ~messageHandler /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/connection.js:421:35
+      1  100.0%            LazyCompile: ~emit events.js:349:44
+      1    5.6%      LazyCompile: ~setupTraceCategoryState internal/bootstrap/pre_execution.js:208:33
+      1  100.0%        LazyCompile: ~prepareMainThreadExecution internal/bootstrap/pre_execution.js:21:36
+      1  100.0%          Eval: ~<anonymous> internal/main/run_main_module.js:1:1
+      1    5.6%      LazyCompile: ~setOption /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/connection_string.js:378:19
+      1  100.0%        LazyCompile: ~parseOptions /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/connection_string.js:208:22
+      1  100.0%          LazyCompile: ~MongoClient /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/mongo_client.js:60:16
+      1  100.0%            LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/connection.js:776:31
+      1    5.6%      LazyCompile: ~parse url.js:170:37
+      1  100.0%        LazyCompile: ~urlParse url.js:154:18
+      1  100.0%          LazyCompile: ~validate_config /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/@mapbox/node-pre-gyp/lib/util/versioning.js:195:25
+      1  100.0%            LazyCompile: ~exports.find /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/@mapbox/node-pre-gyp/lib/pre-binding.js:17:24
+      1    5.6%      LazyCompile: ~module.exports /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/helpers/schematype/handleImmutable.js:9:26
+      1  100.0%        LazyCompile: ~SchemaType /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/schematype.js:40:20
+      1  100.0%          LazyCompile: ~SchemaDate /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/schema/date.js:25:20
+      1  100.0%            LazyCompile: ~Schema.interpretAsType /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/schema.js:914:44
+      1    5.6%      LazyCompile: ~exports.find /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/@mapbox/node-pre-gyp/lib/pre-binding.js:17:24
+      1  100.0%        Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/bcrypt/bcrypt.js:1:1
+      1  100.0%          LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1  100.0%            LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1094:37
+      1    5.6%      LazyCompile: ~etag /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/etag/index.js:70:15
+      1  100.0%        LazyCompile: ~generateETag /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/utils.js:271:32
+      1  100.0%          LazyCompile: ~send /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/response.js:107:25
+      1  100.0%            LazyCompile: ~json /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/response.js:239:25
+      1    5.6%      LazyCompile: ~deserializeObject /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/bson/lib/parser/deserializer.js:65:27
+      1  100.0%        LazyCompile: ~deserializeObject /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/bson/lib/parser/deserializer.js:65:27
+      1  100.0%          LazyCompile: ~deserialize /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/bson/lib/parser/deserializer.js:36:21
+      1  100.0%            LazyCompile: ~deserialize /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/bson/lib/bson.js:162:21
+      1    5.6%      LazyCompile: ~debug internal/util/debuglog.js:75:15
+      1  100.0%        LazyCompile: ~logger internal/util/debuglog.js:90:18
+      1  100.0%          LazyCompile: ~Module._resolveLookupPaths internal/modules/cjs/loader.js:635:38
+      1  100.0%            LazyCompile: ~Module._resolveFilename internal/modules/cjs/loader.js:816:35
+      1    5.6%      LazyCompile: ~create /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/model.js:1712:26
+      1  100.0%        LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/model.js:1769:21
+      1  100.0%          LazyCompile: ~processTicksAndRejections internal/process/task_queues.js:67:35
+      1    5.6%      LazyCompile: ~compile /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/model.js:4767:33
+      1  100.0%        LazyCompile: ~Mongoose._model /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/index.js:534:37
+      1  100.0%          LazyCompile: ~Mongoose.model /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/index.js:470:36
+      1  100.0%            Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/modules/user.js:1:1
+      1    5.6%      LazyCompile: ~CommandOperation /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/operations/command.js:15:16
+      1  100.0%        LazyCompile: ~CreateCollectionOperation /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/operations/create_collection.js:30:16
+      1  100.0%          LazyCompile: ~createCollection /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/db.js:143:21
+      1  100.0%            LazyCompile: ~createCollection /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongoose/lib/connection.js:398:82
+      1    5.6%      LazyCompile: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/routes/routes.js:67:21
+      1  100.0%        LazyCompile: ~handle /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/layer.js:86:49
+      1  100.0%          LazyCompile: ~next /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/route.js:114:16
+      1  100.0%            LazyCompile: ~dispatch /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/express/lib/router/route.js:98:45
+      1    5.6%      Eval: ~<anonymous> internal/modules/cjs/loader.js:1:1
+      1  100.0%        LazyCompile: ~compileForInternalLoader internal/bootstrap/loaders.js:273:27
+      1  100.0%          LazyCompile: ~nativeModuleRequire internal/bootstrap/loaders.js:306:29
+      1  100.0%            LazyCompile: ~initializeCJSLoader internal/bootstrap/pre_execution.js:427:29
+      1    5.6%      Eval: ~<anonymous> internal/bootstrap/node.js:1:1
+      1    5.6%      Eval: ~<anonymous> /home/tomas/Documents/CODERHOUSE/Back-End/Entrega26/Login/node_modules/mongodb/lib/cmap/auth/defaultAuthProviders.js:1:1
+      1  100.0%        LazyCompile: ~Module._compile internal/modules/cjs/loader.js:1039:37
+      1  100.0%          LazyCompile: ~Module._extensions..js internal/modules/cjs/loader.js:1094:37
+      1  100.0%            LazyCompile: ~Module.load internal/modules/cjs/loader.js:938:33
+

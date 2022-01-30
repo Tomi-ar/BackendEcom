@@ -11,15 +11,16 @@
 </head>
 
 <body>
+    <%- include('./templates/nav.ejs') %>
 
-    <h1>SIGNUP</h1>
-    <form method="post" action="">
-        <input type="email" name="username" id="username" placeholder="Tu email ...">
-        <input type="password" name="password" id="password" placeholder="Tu pass ...">
-        <input type="submit" class="btn btn-success" value="Singup">
+        <h1>SIGNUP</h1>
+        <form method="post" action="">
+            <input type="email" name="username" id="username" placeholder="Tu email ...">
+            <input type="password" name="password" id="password" placeholder="Tu pass ...">
+            <input type="submit" class="btn btn-success" value="Singup">
 
-    </form>
-    <a class="btn btn-success" href="/login" role="button">Ir a Login</a>
+        </form>
+        <a class="btn btn-success" href="/login" role="button">Ir a Login</a>
 
 </body>
 
