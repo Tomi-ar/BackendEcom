@@ -11,6 +11,8 @@ const router = require('../routes/routes')
 const parseArgs = require('minimist');
 const compression = require('compression');
 const createFaker = require('../helper/faker');
+const fs = require('fs');
+const moment = require('moment');
 
 // ******************* SOCKET.IO CONFIG ***************************************
 const http = require("http")
@@ -61,7 +63,76 @@ if(args=="cluster" && cluster.isMaster) {
     // MIDDLEWARES ****************************************************************
 
     // ************** SOCKET.IO CONECTION ****************************************
-        // todo el choclo del socket
+    io.on("connection", (socket) => {
+        console.log("Cliente conectado");
+        fs.readFile("./db/Comms.txt", "utf-8", (err,data) => {
+            let info = JSON.parse(data);
+            const normalized = normalize(info, postSchema);
+            socket.emit("message_rta_normlz", normalized)
+        })
+        createFaker();
+        fs.readFile("./db/arrProds.txt", "utf-8", (err,data) => {        
+            let info = JSON.parse(data);
+            socket.emit("arrUpdated", info)
+        })
+       
+        socket.on("dataText", (dataObj) => {
+            fs.readFile("./db/Comms.txt", "utf-8", (err,data) => {
+                let dataFile = JSON.parse(data);
+                let listaMensajes = dataFile.mensajes;
+                let newDateTime = moment().format("DD/MM/YYYY HH:mm:ss");
+                let newCom = {
+                    author: {
+                        id: dataObj.id,
+                        nombre: dataObj.name,
+                        apellido: dataObj.lastname,
+                        edad: dataObj.age,
+                        alias: dataObj.alias,
+                        avatar: dataObj.avatar
+                    },
+                    text: dataObj.text,
+                    dateTime: newDateTime
+                }
+    
+                listaMensajes.push(newCom);
+                // console.log(listaMensajes);
+                fs.writeFile("./db/Comms.txt", JSON.stringify(dataFile, null, 2), (err) => {
+                    console.log("Comentario guardado");
+    
+                    const normalized = normalize(dataFile, postSchema);
+                    io.sockets.emit("message_rta_normlz", normalized)
+                })
+            })
+        })
+          
+        socket.on("mensaje_cliente", (data) =>{
+            console.log(data);
+        })
+    
+        socket.on("newProd", (dataObj) => {
+            fs.readFile("./db/arrProds.txt", "utf-8", (err,data) => {
+                let dataFile = JSON.parse(data)
+                let items = dataFile.length;
+                let id = parseInt(dataFile[items - 1].id) + 1;
+                let newProd = {
+                        nombre: dataObj.nombre,
+                        precio: dataObj.precio,
+                        thumb: dataObj.thumb,
+                        id: id
+                    }
+                
+                dataFile.push(newProd)
+                // console.log(dataFile);
+                fs.writeFile("./db/arrProds.txt", JSON.stringify(dataFile, null, 2), (err,data) =>{
+                    console.log("Producto guardado!");
+                    io.sockets.emit("arrUpdated", dataFile)
+                })
+            })
+        })
+        socket.on("updateConfirm", () => {
+            console.log("Actualizado");
+        })
+    })
     // ************** SOCKET.IO CONECTION ****************************************
 
     server.listen(process.env.PORT, () => {
