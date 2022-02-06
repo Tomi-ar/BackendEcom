@@ -1,16 +1,25 @@
 const express = require('express');
 const dotenv = require('dotenv');
 dotenv.config();
-require('./db');
+require('./userDB');
 require("./passport");
+require('../helper/normalize');
 const logger = require('../loggers/logger');
 const app = express();
-const session = require('express-session');
-const passport = require('passport');
 const forkRouter = require("../routes/fork");
 const router = require('../routes/routes')
 const parseArgs = require('minimist');
 const compression = require('compression');
+const createFaker = require('../helper/faker');
+
+// ******************* SOCKET.IO CONFIG ***************************************
+const http = require("http")
+const server = http.createServer(app)
+const { Server } = require("socket.io");
+const io = new Server(server)
+app.use(express.static(__dirname+"/public"))
+// ******************* SOCKET.IO CONFIG ***************************************
+
 
 // CLUSTER ********************************************************************
 const cluster = require("cluster");
@@ -45,30 +54,17 @@ if(args=="cluster" && cluster.isMaster) {
     app.use(compression())
 
     app.use(function(err, req, res, next) {
-        logger.log("error", `${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method}`);
+        logger.log("warn", `status: 400, error: Not Found - ${err.message} - ${req.originalUrl} - ${req.method}`);
         res.status(err.status || 500);
         res.render('error')
     })
     // MIDDLEWARES ****************************************************************
 
-    // SESIONES *******************************************************************
-    app.use(session({
-        secret: process.env.SECRET,
-        cookie: {
-        httpOnly: false,
-        secure: false,
-        maxAge: 10*60*1000
-        },
-        rolling: true,
-        resave: true,
-        saveUninitialized: true
-        })
-    );
-    app.use(passport.initialize());
-    app.use(passport.session());
-    // SESIONES *******************************************************************
+    // ************** SOCKET.IO CONECTION ****************************************
+        // todo el choclo del socket
+    // ************** SOCKET.IO CONECTION ****************************************
 
-    app.listen(process.env.PORT, () => {
+    server.listen(process.env.PORT, () => {
         console.log(`Server is running on port: ${process.env.PORT} - pid: ${process.pid}`);
     })
 }

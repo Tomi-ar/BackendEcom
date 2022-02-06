@@ -4,9 +4,28 @@ dotenv.config();
 const numCPUs = require('os').cpus().length
 const passport = require('passport');
 require("../src/passport")
-require('../src/db')
+require('../src/userDB')
 const logger = require('../loggers/logger')
 const router = new Router
+const session = require('express-session');
+
+// SESIONES *******************************************************************
+router.use(session({
+    secret: process.env.SECRET,
+    cookie: {
+    httpOnly: false,
+    secure: false,
+    maxAge: 10*60*1000
+    },
+    rolling: true,
+    resave: true,
+    saveUninitialized: true
+    })
+);
+router.use(passport.initialize());
+router.use(passport.session());
+// SESIONES *******************************************************************
+
 
 // RUTAS ********************************************************
 router.get("/", (req, res) => {
@@ -61,8 +80,11 @@ router.get("/checkPass", (req,res) => {
     logger.log("info", `${req.method}-${req.originalUrl}`);
 })
 router.get("/productos", authorize, (req, res) => {
-    res.render("productos", {user: req.user.username})
-    logger.log("error", new Error("Error en la ruta"));
+    try {
+        res.render("productos", {user: req.user.username})
+    } catch (error) {
+        logger.log("error", new Error("Error en la ruta"));
+    }
 })
 router.get("/info", (req,res) => {
     let datos = {
@@ -75,7 +97,7 @@ router.get("/info", (req,res) => {
     "carpeta proyecto": process.cwd(),
     "numero de procesadores": numCPUs
     }
-    console.log(datos);
+    // console.log(datos);
     res.json({datos})
     logger.log("info", `${req.method}-${req.originalUrl}`);
 })
