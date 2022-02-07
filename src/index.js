@@ -65,19 +65,19 @@ if(args=="cluster" && cluster.isMaster) {
     // ************** SOCKET.IO CONECTION ****************************************
     io.on("connection", (socket) => {
         console.log("Cliente conectado");
-        fs.readFile("./db/Comms.txt", "utf-8", (err,data) => {
+        fs.readFile("../db/Comms.txt", "utf-8", (err,data) => {
             let info = JSON.parse(data);
             const normalized = normalize(info, postSchema);
             socket.emit("message_rta_normlz", normalized)
         })
         createFaker();
-        fs.readFile("./db/arrProds.txt", "utf-8", (err,data) => {        
+        fs.readFile("../db/arrProds.txt", "utf-8", (err,data) => {        
             let info = JSON.parse(data);
             socket.emit("arrUpdated", info)
         })
        
         socket.on("dataText", (dataObj) => {
-            fs.readFile("./db/Comms.txt", "utf-8", (err,data) => {
+            fs.readFile("../db/Comms.txt", "utf-8", (err,data) => {
                 let dataFile = JSON.parse(data);
                 let listaMensajes = dataFile.mensajes;
                 let newDateTime = moment().format("DD/MM/YYYY HH:mm:ss");
@@ -96,7 +96,7 @@ if(args=="cluster" && cluster.isMaster) {
     
                 listaMensajes.push(newCom);
                 // console.log(listaMensajes);
-                fs.writeFile("./db/Comms.txt", JSON.stringify(dataFile, null, 2), (err) => {
+                fs.writeFile("../db/Comms.txt", JSON.stringify(dataFile, null, 2), (err) => {
                     console.log("Comentario guardado");
     
                     const normalized = normalize(dataFile, postSchema);
@@ -110,7 +110,7 @@ if(args=="cluster" && cluster.isMaster) {
         })
     
         socket.on("newProd", (dataObj) => {
-            fs.readFile("./db/arrProds.txt", "utf-8", (err,data) => {
+            fs.readFile("../db/arrProds.txt", "utf-8", (err,data) => {
                 let dataFile = JSON.parse(data)
                 let items = dataFile.length;
                 let id = parseInt(dataFile[items - 1].id) + 1;
@@ -123,7 +123,7 @@ if(args=="cluster" && cluster.isMaster) {
                 
                 dataFile.push(newProd)
                 // console.log(dataFile);
-                fs.writeFile("./db/arrProds.txt", JSON.stringify(dataFile, null, 2), (err,data) =>{
+                fs.writeFile("../db/arrProds.txt", JSON.stringify(dataFile, null, 2), (err,data) =>{
                     console.log("Producto guardado!");
                     io.sockets.emit("arrUpdated", dataFile)
                 })

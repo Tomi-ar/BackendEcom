@@ -58,7 +58,7 @@ router.get("/login", (req, res) => {
 router.post("/login", 
     passport.authenticate("local-login", { failureRedirect: "/checkPass" }), 
         function(req, res) {
-            res.redirect("/profile")
+            res.redirect("/productos")
         }
 )
 
@@ -81,7 +81,7 @@ router.get("/checkPass", (req,res) => {
 })
 router.get("/productos", authorize, (req, res) => {
     try {
-        res.render("productos", {user: req.user.username})
+        res.render("productos", {user: req.user.username, check: false})
     } catch (error) {
         logger.log("error", new Error("Error en la ruta"));
     }
