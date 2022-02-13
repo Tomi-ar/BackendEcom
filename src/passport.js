@@ -2,15 +2,35 @@ const passport = require("passport");
 const localStrategy = require("passport-local").Strategy
 const User = require("../modules/user");
 const bcrypt = require('bcrypt');
+const dotenv = require('dotenv');
+dotenv.config();
 
 // ENCRIPTAR CONTRASEÑA ********************************************************
 const saltRounds = 10;
 // ENCRIPTAR CONTRASEÑA ********************************************************
 
+// ******************** CONFIG DE NODE MAILER ************************************
+const transporter = createTransport({
+    service: "gmail",
+    port: 587,
+    auth: {
+        user: process.env.EMAIL_SIGNUP,
+        pass: process.env.EMAIL_PASS
+    }
+})
+
+const mailOptions = {
+    from: "Servidor node.js",
+    to: process.env.EMAIL_SIGNUP,
+    subject: "Nuevo usuario registrado",
+    html: "<h3>Contenido de prueba desde <span>Nodemailer</span></h3>"
+}
+// ******************** CONFIG DE NODE MAILER ************************************
+
 passport.use("local-signup", new localStrategy(
-    // {passReqToCallback: true}, 
-    ( username, password, done) => {
-        User.findOne({ username: username}, (err,user) => {
+    {passReqToCallback: true}, 
+    (req, username, password, done) => {
+        User.findOne({ username: username}, async (err,user) => {
             if(err) {
                 console.log("parece que tenemos un problema");
                 return done(err);
@@ -21,11 +41,23 @@ passport.use("local-signup", new localStrategy(
             }
             const newUser = {
                 username: username,
-                password: bcrypt.hashSync(password, saltRounds)
+                password: bcrypt.hashSync(password, saltRounds),
+                names: req.body.names,
+                age: req.body.age,
+                address: req.body.address,
+                tel: req.body.tel
             }
             new User(newUser).save()
-            console.log("registrado?");
-            return done(null, user)         
+            console.log("registrado");
+            try {
+                let info = await transporter.sendMail(mailOptions)
+                console.log(info)
+                res.send("Email enviado correctamente")
+            } catch(err) {
+                console.log(err)
+            }
+            return done(null, user)
+                     
         })
     }
 ))

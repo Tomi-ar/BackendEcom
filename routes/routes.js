@@ -26,7 +26,6 @@ router.use(passport.initialize());
 router.use(passport.session());
 // SESIONES *******************************************************************
 
-
 // RUTAS ********************************************************
 router.get("/", (req, res) => {
     res.render("main");

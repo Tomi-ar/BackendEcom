@@ -11,6 +11,26 @@ const userSchema = new Schema({
         type: String,
         required: true,
         allowNull: false
+    },
+    names: {
+        type: String,
+        required: true,
+        allowNull: false
+    },
+    age: {
+        type: Number,
+        required: true,
+        allowNull: false
+    },
+    address: {
+        type: String,
+        required: true,
+        allowNull: false
+    },
+    tel: {
+        type: Number,
+        required: true,
+        allowNull: false
     }
 }, {timestamps: true});
 

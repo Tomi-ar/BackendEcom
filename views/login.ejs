@@ -11,19 +11,22 @@
 
 <body>
     <%- include('./templates/nav.ejs') %>
-        <h1>LOGIN</h1>
-        <form method="post" action="">
-            <input type="email" name="username" id="" placeholder="Tu email ...">
-            <input type="password" name="password" id="" placeholder="Tu pass ...">
-            <input type="submit" class="btn btn-success" value="Login">
+        <div class="container">
+            <h1>LOGIN</h1>
+            <form method="post" action="">
+                <input class="d-block" type="email" name="username" id="" placeholder="Tu email ...">
+                <input class="d-block" type="password" name="password" id="" placeholder="Tu pass ...">
+                <input type="submit" class="btn btn-success d-block mt-2" value="Login">
 
-        </form>
-        <% if (message) { %>
-            <p>
-                <%= message %>
-            </p>
-            <% } %>
-                <a class="btn btn-success" href="/signup" role="button">Signup</a>
+            </form>
+            <% if (message) { %>
+                <p>
+                    <%= message %>
+                </p>
+                <% } %>
+                    <a class="btn btn-success mt-2" href="/signup" role="button">Signup</a>
+
+        </div>
 
 </body>
 
