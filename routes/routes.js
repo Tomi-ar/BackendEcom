@@ -8,6 +8,8 @@ require('../src/userDB')
 const logger = require('../loggers/logger')
 const router = new Router
 const session = require('express-session');
+const multer = require('multer');
+const upload = multer({ dest: './public/uploads/' });
 
 // SESIONES *******************************************************************
 router.use(session({
@@ -40,7 +42,11 @@ router.post("/signup",
     passport.authenticate("local-signup", { 
         failureRedirect: "/login",
         successRedirect: "/profile"
-    })
+    }),
+    upload.single("avatar"),
+    (req, res, next) => {
+        res.send("usuario registrado");
+    }
 )
 const authorize = (req, res, next) => {
     if (req.isAuthenticated()) {
@@ -56,9 +62,9 @@ router.get("/login", (req, res) => {
 })
 router.post("/login", 
     passport.authenticate("local-login", { failureRedirect: "/checkPass" }), 
-        function(req, res) {
-            res.redirect("/productos")
-        }
+    function(req, res) {
+        res.redirect("/productos")
+    }
 )
 
 router.get("logout", (req,res) => {

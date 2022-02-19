@@ -31,6 +31,10 @@ const userSchema = new Schema({
         type: Number,
         required: true,
         allowNull: false
+    },
+    avatar: {
+        data: Buffer,
+        contentType: String,
     }
 }, {timestamps: true});
 

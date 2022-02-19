@@ -4,6 +4,7 @@ const User = require("../modules/user");
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 dotenv.config();
+const {createTransport} = require("nodemailer")
 
 // ENCRIPTAR CONTRASEÑA ********************************************************
 const saltRounds = 10;
@@ -45,7 +46,8 @@ passport.use("local-signup", new localStrategy(
                 names: req.body.names,
                 age: req.body.age,
                 address: req.body.address,
-                tel: req.body.tel
+                tel: req.body.tel,
+                avatar: req.file
             }
             new User(newUser).save()
             console.log("registrado");
@@ -56,8 +58,7 @@ passport.use("local-signup", new localStrategy(
             } catch(err) {
                 console.log(err)
             }
-            return done(null, user)
-                     
+            return done(null, user)    
         })
     }
 ))
