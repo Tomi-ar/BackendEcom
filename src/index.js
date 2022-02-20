@@ -2,7 +2,6 @@ const express = require('express');
 const dotenv = require('dotenv');
 dotenv.config();
 require('./userDB');
-require("./passport");
 require('../helper/normalize');
 const logger = require('../loggers/logger');
 const app = express();

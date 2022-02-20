@@ -35,7 +35,16 @@ const userSchema = new Schema({
     avatar: {
         data: Buffer,
         contentType: String,
+    },
+    role: {
+        type: String,
+        enum: ['admin', 'user'],
+        default: 'user'
+    },
+    cart: {
+        type: Array,
+        "default": []
     }
 }, {timestamps: true});
 
-module.exports = model("User", userSchema);
+module.exports = model("usuarios", userSchema);

@@ -1,37 +1,19 @@
 const passport = require("passport");
 const localStrategy = require("passport-local").Strategy
-const User = require("../modules/user");
+const usuarios = require("../modules/user");
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 dotenv.config();
-const {createTransport} = require("nodemailer")
+const {transporter, mailSignup} = require('../helper/nodeMailer');
+const { client, twNewUser } = require('../helper/Twilio');
 
 // ENCRIPTAR CONTRASEÑA ********************************************************
 const saltRounds = 10;
 // ENCRIPTAR CONTRASEÑA ********************************************************
 
-// ******************** CONFIG DE NODE MAILER ************************************
-const transporter = createTransport({
-    service: "gmail",
-    port: 587,
-    auth: {
-        user: process.env.EMAIL_SIGNUP,
-        pass: process.env.EMAIL_PASS
-    }
-})
-
-const mailOptions = {
-    from: "Servidor node.js",
-    to: process.env.EMAIL_SIGNUP,
-    subject: "Nuevo usuario registrado",
-    html: "<h3>Contenido de prueba desde <span>Nodemailer</span></h3>"
-}
-// ******************** CONFIG DE NODE MAILER ************************************
-
-passport.use("local-signup", new localStrategy(
-    {passReqToCallback: true}, 
-    (req, username, password, done) => {
-        User.findOne({ username: username}, async (err,user) => {
+passport.use("local-signup", new localStrategy({passReqToCallback: true}, async (req, username, password, done) => {
+    try {
+        await usuarios.findOne({ username: username }, async (err,user) => {
             if(err) {
                 console.log("parece que tenemos un problema");
                 return done(err);
@@ -49,22 +31,33 @@ passport.use("local-signup", new localStrategy(
                 tel: req.body.tel,
                 avatar: req.file
             }
-            new User(newUser).save()
+            new usuarios(newUser).save()
             console.log("registrado");
+
             try {
-                let info = await transporter.sendMail(mailOptions)
+                // EMAIL
+                let info = await transporter.sendMail(mailSignup)
                 console.log(info)
-                res.send("Email enviado correctamente")
+                // TWILIO
+                let message = await client.messages.create(twNewUser)
+                console.log(message)
             } catch(err) {
                 console.log(err)
             }
-            return done(null, user)    
-        })
+            return done(null, user)
+            })
+        } catch (error) {
+            console.log("Error registrando" + error)
+        }
     }
 ))
 
+function isValidPassword(user, pass) {
+    return bcrypt.compareSync(pass, user.password);
+}
+
 passport.use("local-login",new localStrategy((username, password, done) => {
-    User.findOne({ username: username }, (err, user) => {
+    usuarios.findOne({ username: username }, (err, user) => {
             if(err) {
                 return done(err);
             }
@@ -81,16 +74,12 @@ passport.use("local-login",new localStrategy((username, password, done) => {
     }) 
 )
 
-function isValidPassword(user, pass) {
-    return bcrypt.compareSync(pass, user.password);
-}
-
 passport.serializeUser((user, done) => {
     done(null, user.id);
 });
   
 passport.deserializeUser((id, done) => {
-    User.findById(id, done);
+    usuarios.findById(id, done);
 });
 
 module.exports 
