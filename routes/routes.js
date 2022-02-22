@@ -5,7 +5,7 @@ dotenv.config();
 const numCPUs = require('os').cpus().length
 const passport = require('passport');
 const multer = require('multer');
-const upload = multer({ dest: "../public/uploads/" });
+const upload = multer({ dest: "./public/uploads/" });
 const bodyParser = require('body-parser');
 require("../src/passport")
 require('../src/userDB')
@@ -61,17 +61,12 @@ router.get("/signup", (req, res) => {
     logger.log("info", `${req.method}-${req.originalUrl}`);
 })
 
-router.post("/signup", 
+router.post("/signup", upload.single("avatar"),
     passport.authenticate("local-signup", {
-        // successRedirect: "/login",
+        successRedirect: "/login",
         failureRedirect: "/signup",
         passReqToCallback: true
-    }),
-    upload.single("avatar"),
-    (req, res) => {
-        console.log(req.file);
-        res.redirect("/login");
-    }
+    })
 )
 
 router.get("/login", (req, res) => {
