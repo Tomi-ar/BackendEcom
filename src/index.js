@@ -12,6 +12,7 @@ const compression = require('compression');
 const createFaker = require('../helper/faker');
 const fs = require('fs');
 const moment = require('moment');
+const bodyParser = require('body-parser');
 
 // ******************* SOCKET.IO CONFIG ***************************************
 const http = require("http")
@@ -48,8 +49,8 @@ if(args=="cluster" && cluster.isMaster) {
     // MOTOR DE PLANTILLAS ********************************************************
 
     // MIDDLEWARES ****************************************************************
-    app.use(express.json());
-    app.use(express.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
     app.use("/api", forkRouter)
     app.use("/", router)
     app.use(compression())

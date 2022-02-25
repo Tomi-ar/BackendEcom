@@ -33,7 +33,7 @@ router.use(session({
 router.use(passport.initialize());
 router.use(passport.session());
 router.use(bodyParser.json())
-router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.urlencoded({ extended: true }));
 // SESIONES *******************************************************************
 
 // RUTAS ********************************************************

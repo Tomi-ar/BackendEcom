@@ -29,9 +29,10 @@ passport.use("local-signup", new localStrategy({passReqToCallback: true}, async 
                 age: req.body.age,
                 address: req.body.address,
                 tel: req.body.tel,
-                avatar: req.file
+                role: req.body.role || "user",
+                avatar: req.file.filename
             }
-            new usuarios(newUser).save()
+            await new usuarios(newUser).save()
             console.log("registrado");
 
             try {
