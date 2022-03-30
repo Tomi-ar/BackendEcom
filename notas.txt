@@ -1,0 +1,6 @@
+Crear la app.
+crear 2 rutas: una post para agarrar el color del form, una get para mostrar los colores
+crear un array vacio para pushear los colores
+
+crear view de react? 
+un componente: formulario y manejador de funcion
