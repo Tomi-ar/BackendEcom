@@ -1,5 +1,6 @@
-import { Router } from "../devDependencies.js";
+import { Router } from "../devDependencies.js";4
+import { getColors, createColors } from '../controllers/colors.ts'
 
 export const route = new Router()
-.get(("/", getColors)
-.post("/", createColors)
+.get("/colors", getColors)
+.post("/colors", createColors)
