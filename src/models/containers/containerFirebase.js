@@ -1,6 +1,5 @@
 const admin = require('firebase-admin');
-const config = require('../config');
-// const { v4:uuidv4 } = require('uuid')
+const config = require("../config/config.js");
 
 admin.initializeApp({
     credential: admin.credential.cert(config.firebase),
@@ -8,11 +7,22 @@ admin.initializeApp({
 })
 
 const db = admin.firestore();
+let instanceProdFirebase = []
 
 class ContenedorFirebase {
     constructor(nombreColeccion) {
         this.coleccion = db.collection(nombreColeccion)
+        this.value = Math.random()
     }
+
+    //**************************** SINGLETON ****************************** */
+    static getInstance() {
+        if(!instanceProdFirebase){
+            instanceProdFirebase = new ContenedorFirebase()
+        }
+        return instanceProdFirebase
+    }
+    //**************************** SINGLETON ****************************** */
 
     async save(obj) {
         try {
