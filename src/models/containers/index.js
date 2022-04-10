@@ -21,4 +21,5 @@ switch (dataBase){
         break;
 }
 
-module.exports = {productDAO, cartDAO};
+
+module.exports = {productDAO, cartDAO, dataBase };

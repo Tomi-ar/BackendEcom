@@ -2,12 +2,22 @@ const express = require('express');
 const { Router } = express;
 const { getDataController, getDataControllerId, postDataController, updateDataController, deleteDataController } = require('../src/models/controllers/productController')
 const router = new Router();
+require('../src/models/config/passport');
+
+
+// const authorizeAdmin = (req, res, next) => {
+//     if (req.user.role == "admin") {
+//     next();
+//     return;
+//     }
+//     res.send("No tienes permisos");
+// }
 
 router.get("/", getDataController)
 router.get("/:id", getDataControllerId)
-router.post("/", postDataController)
-router.put("/:id", updateDataController)
-router.delete("/:id", deleteDataController)
+router.post("/",  postDataController)
+router.put("/:id",  updateDataController)
+router.delete("/:id",  deleteDataController)
 
 
 // router.get("/", async (req,res) => {

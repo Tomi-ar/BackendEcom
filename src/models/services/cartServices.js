@@ -16,21 +16,25 @@ class CartServices {
     }
     //**************************** SINGLETON ****************************** */
 
-    async getService(){
-        let carts = await this.CartDaos.getData()
+    async getServices(){
+        let carts = await this.CartDaos.getCart()
         return carts    
     }
     async getServiceById(id){
         let cart
         if(id){
-            cart = await this.CartDaos.getByIdDB(id)
+            cart = await this.CartDaos.getCartByIdDB(id)
         } else {
-            cart = await this.CartDaos.getData()
+            cart = await this.CartDaos.getCart()
         }
         return cart
     }
     async saveService(dataObj){
         let cart = await this.CartDaos.saveData(dataObj)
+        return cart
+    }
+    async addProdService(id, dato){
+        let cart = await this.CartDaos.addProduct(id, dato)
         return cart
     }
     async updateService(id, dato){
@@ -39,6 +43,10 @@ class CartServices {
     }
     async deleteService(id){
         let cart = await this.CartDaos.deleteData(id)
+        return cart
+    }
+    async closeService(id){
+        let cart = await this.CartDaos.closeData(id)
         return cart
     }
 }

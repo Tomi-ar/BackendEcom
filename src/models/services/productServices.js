@@ -16,7 +16,7 @@ class ProductServices {
     }
     //**************************** SINGLETON ****************************** */
 
-    async getService(){
+    async getServices(){
         let prods = await this.ProductDaos.getData()
         return prods    
     }

@@ -1,10 +1,11 @@
 const passport = require('passport');
 const localStrategy = require("passport-local").Strategy
-const usuarios = require("../containers/users/user");
+const usuarios = require("../containers/users/userSchema");
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 dotenv.config();
 const {transporter, mailSignup} = require('./nodeMailer');
+const logger = require('../../../loggers/logger')
 
 const saltRounds = 10
 
@@ -12,11 +13,11 @@ passport.use("local-signup", new localStrategy({passReqToCallback: true}, async 
     try {
         await usuarios.findOne({ username: username }, async (err,user) => {
             if(err) {
-                console.log("Parece que tenemos un problema al registrarse");
+                logger.log("error", new Error("Parece que tenemos un problema al registrarse"));
                 return done(err);
             }
             if(user) {
-                console.log("Usuario ya registrado");
+                logger.log("warn", new Error("Usuario ya registrado"));
                 return done(null, false);
             }
             const newUser = {
@@ -30,22 +31,22 @@ passport.use("local-signup", new localStrategy({passReqToCallback: true}, async 
                 avatar: req.file
             }
             await new usuarios(newUser).save()
-            console.log("Registrado con éxito");
+            logger.log("info", `Usuario ${username} registrado`);
 
             try {
                 // EMAIL
                 let info = await transporter.sendMail(mailSignup)
-                console.log(info)
+                logger.log("info", `Email de signup enviado a ${username}`);
                 // TWILIO
                 // let message = await client.messages.create(twNewUser)
                 // console.log(message)
             } catch(err) {
-                console.log(err)
+                logger.log("error", new Error("Error al enviar email de signup"));
             }
             return done(null, user)
             })
         } catch (error) {
-            console.log("Error registrando" + error)
+            logger.log("error", new Error("Error resgistrando usuario"));
         }
     }
 ))
@@ -60,11 +61,11 @@ passport.use("local-login",new localStrategy((username, password, done) => {
                 return done(err);
             }
             if(!user) {
-                console.log("Usuario no encontrado");
+                logger.log("warn", new Error("Usuario no encontrado"));
                 return done(null, false)
             }
             if(!isValidPassword(user, password)) {
-                console.log("Contraseña incorrecta");
+                logger.log("warn", new Error("Contraseña incorrecta"));
                 return done(null, false)
             }
             return done(null, user);

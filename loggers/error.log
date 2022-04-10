@@ -1,0 +1,15 @@
+{"level":"error","timestamp":"2022-04-10T19:40:07.296Z"}
+{"level":"error","timestamp":"2022-04-10T19:41:14.103Z"}
+{"level":"error","timestamp":"2022-04-10T19:41:58.345Z"}
+{"level":"error","timestamp":"2022-04-10T19:42:19.703Z"}
+{"level":"error","message":"error is not defined","timestamp":"2022-04-10T19:43:07.141Z"}
+{"level":"error","message":"error is not defined","timestamp":"2022-04-10T19:43:57.458Z"}
+{"level":"error","message":"error is not defined","timestamp":"2022-04-10T19:47:56.816Z"}
+{"level":"error","message":"Cast to ObjectId failed for value \":625334550af16e669ea1d670\" (type string) at path \"_id\" for model \"products\"","timestamp":"2022-04-10T19:48:28.294Z"}
+{"level":"error","message":"error is not defined","timestamp":"2022-04-10T19:48:42.810Z"}
+{"level":"error","message":"error is not defined","timestamp":"2022-04-10T19:49:28.608Z"}
+{"level":"error","message":"error is not defined","timestamp":"2022-04-10T19:49:54.802Z"}
+{"level":"error","message":"error is not defined","timestamp":"2022-04-10T19:50:05.414Z"}
+{"level":"error","message":"error is not defined","timestamp":"2022-04-10T19:51:30.630Z"}
+{"level":"error","message":"products validation failed: nombre: Path `nombre` is required., descripcion: Path `descripcion` is required., codigo: Path `codigo` is required., thumb: Path `thumb` is required., precio: Path `precio` is required., stock: Path `stock` is required.","timestamp":"2022-04-10T19:55:04.351Z"}
+{"level":"error","message":"username is not defined","timestamp":"2022-04-10T20:21:24.800Z"}

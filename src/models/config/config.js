@@ -19,13 +19,6 @@ const connection =  {
         "token_uri": "https://oauth2.googleapis.com/token",
         "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
         "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-zbdys%40backend-coder-9b544.iam.gserviceaccount.com"
-      },
-    // sqlite3: {
-    //     client: 'sqlite3',
-    //     connection: {
-    //         filename: `./DB/ecommerce.sqlite`
-    //     },
-    //     useNullAsDefault: true
-    // }
+      }
 }
 module.exports = connection;

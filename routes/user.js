@@ -9,7 +9,7 @@ const multer = require('multer');
 const upload = multer({ dest: "../src/public/uploads/" });
 const bodyParser = require('body-parser');
 require('../src/models/config/passport')
-const { redirectProducts, redirectLogout } = require('../src/models/controllers/userController')
+const { renderMain, renderSignup, renderLogin, redirectProducts, redirectLogout } = require('../src/models/controllers/userController')
 
 // SESIONES *******************************************************************
 router.use(session({
@@ -30,13 +30,16 @@ router.use(bodyParser.json())
 router.use(bodyParser.urlencoded({ extended: true }));
 // SESIONES *******************************************************************
 
+router.get("/", renderMain);
+router.get("/signup", renderSignup)
 router.post("/signup", upload.single("avatar"),
     passport.authenticate("local-signup", {
-        // successRedirect: "/login",
-        failureRedirect: "/signup",
+        successRedirect: "/login",
+        failureRedirect: "/login",
         passReqToCallback: true
     })
 )
+router.get("/login", renderLogin)
 router.post("/login", 
     passport.authenticate("local-login", { failureRedirect: "/checkPass" }), 
     redirectProducts

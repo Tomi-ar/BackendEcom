@@ -1,6 +1,10 @@
 const { Schema, model } = require('mongoose');
 const MongoClient = require('../../config/mongoDB')
-const mongoConnect = new MongoClient().connect()
+
+const { dataBase } = require('../index')
+if (dataBase !== undefined) {
+    const mongoConnect = new MongoClient().connect()
+}
 
 const userSchema = new Schema({
     username: {

@@ -1,3 +1,4 @@
+const logger = require('../../../loggers/logger')
 const admin = require('firebase-admin');
 const config = require("../config/config.js");
 
@@ -29,7 +30,7 @@ class ContenedorFirebase {
             const saved = await this.coleccion.add(obj);
             return { ...obj, id: saved.id }
         } catch (error) {
-            throw new Error(`Error al guardar: ${error}`)
+            logger.log("error", error.message)
         }
     }
     async getAll(){
@@ -41,20 +42,20 @@ class ContenedorFirebase {
             })
             return result
         } catch (error) {
-            throw new Error(`Error al listar todo: ${error}`)
+            logger.log("error", error.message)
         }
     }
     async getById(id) {
         try {
             const doc = await this.coleccion.doc(id).get();
             if (!doc.exists) {
-                throw new Error(`No se encontró el id: ${id}`)
+                logger.log("error", error.message)
             } else {
                 const data = doc.data();
                 return { ...data, id }
             }
         } catch (error) {
-            throw new Error(`Error al listar id: ${error}`)
+            logger.log("error", error.message)
         }
     }
     async deleteId(id) {
@@ -62,7 +63,7 @@ class ContenedorFirebase {
             const item = await this.coleccion.doc(id).delete();
             return item
         } catch (error) {
-            throw new Error(`Error al borrar: ${error}`)
+            logger.log("error", error.message)
         }
     }
     async updateId(id, obj) {
@@ -70,15 +71,9 @@ class ContenedorFirebase {
             const updated = await this.coleccion.doc(id).set(obj);
             return updated
         } catch (error) {
-            throw new Error(`Error al actualizar: ${error}`)
+            logger.log("error", error.message)
         }
     }
-    // async deleteProduct(id, idProduct) {
-
-    // }
-    // async addProduct(id, arr) {
-
-    // }
 }
 
 module.exports = ContenedorFirebase

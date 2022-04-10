@@ -1,14 +1,16 @@
 const express = require('express');
 const { Router } = express;
-const { getCartController,getCartControllerId, postCartController, updateCartController, deleteCartController } = require('../src/models/controllers/cartController')
+const { getCartController,getCartControllerId, postCartController, addProdController, updateCartController, deleteCartController, closeCartController } = require('../src/models/controllers/cartController')
 const router = new Router();
 
 
 router.get("/", getCartController)
 router.get("/:id", getCartControllerId)
 router.post("/", postCartController)
+router.post("/:id", addProdController)
 router.put("/:id", updateCartController)
 router.delete("/:id", deleteCartController)
+router.get("/:id/finalizar", closeCartController)
 
 
 // router.get("/", async (req,res) => {
